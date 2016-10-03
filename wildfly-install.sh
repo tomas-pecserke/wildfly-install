@@ -64,9 +64,9 @@ chown -R $SERVICE_USER:$SERVICE_GROUP $INSTALL_DIR
 chown -R $SERVICE_USER:$SERVICE_GROUP $INSTALL_DIR/
 ln -s $INSTALL_DIR $INSTALL_DIR_NO_VERSION
 cat > $INSTALL_DIR_NO_VERSION/bin/launch.sh << "EOF"
-#!/bin/sh
+#!/bin/bash
 if [ "x$WILDFLY_HOME" = "x" ]; then
-  WILDFLY_HOME="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  WILDFLY_HOME="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
 fi
 if [[ "$1" == "domain" ]]; then
   $WILDFLY_HOME/bin/domain.sh -c $2 -b $3
